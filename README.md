@@ -43,6 +43,36 @@ NOTE: `OpenCVLoader`の代わりに`System.loadLibrary("opencv_java3");`と記�
 
 ## 3. あとは普通に使うだけ。
 
+# ライブラリのメンテナンスについて
+
+OpenCVのバージョンが上がったなどの理由で本リポジトリを修正する必要がある場合、以下の点に留意してください。
+
+## `*.so`ファイルはGit LFSで管理されています
+
+Gitリポジトリはテキストの差分管理には有用ですが、バイナリは不向きです。
+そのため、サイズの大きなバイナリファイル（本リポジトリにおいては`*.so`ファイル）は[Git Large File Storage](https://git-lfs.github.com/)で管理しています。
+
+とは言えあまり特別なことはなく、以下コマンドなどでgit-lfsをインストールしてから git clone すれば良いだけです。
+
+```
+$ brew install git-lfs
+```
+
+また、`git pull`などをするだけだと、ファイルのポインターファイルだけが取得された状態になるので、`git lfs pull`も併せて行うと良いでしょう。
+
+## bintrayへの配信について
+
+以下のようなシェルスクリプトを用意するのが良いでしょう。
+
+```sh
+#!/bin/sh
+
+BINTRAY_USERNAME=*****
+BINTRAY_KEY=**********
+
+./gradlew clean library:build library:bintrayUpload -PbintrayUser=$BINTRAY_USERNAME -PbintrayKey=$BINTRAY_KEY -PdryRun=false
+```
+
 # Licenses
 
 本ライブラリは三条項BSDライセンスの下で配布されているOpenCVの[Downloadsページ](http://opencv.org/downloads.html)より入手したSDKソースコード・バイナリを調整の上、AARライブラリ化しております。
