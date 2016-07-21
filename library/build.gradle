@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+    sourceSets{
+        main{
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            res.srcDirs = ['res']
+            jniLibs.srcDirs = ['jniLibs']
+        }
+    }
+}
+
+publish {
+    userOrg = 'seesaa'
+    groupId = 'jp.seesaa.android'
+    artifactId = 'opencv'
+    publishVersion = rootProject.ext.versionName
+    licences = ['BSD-3-Clause']
+    desc = 'Convenience OpenCV library for Android'
+    website = 'https://github.com/seesaa/opencv-android'
+}

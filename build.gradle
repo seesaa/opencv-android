@@ -1,0 +1,32 @@
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.novoda:bintray-release:0.3.4'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 24
+    buildToolsVersion = "24.0.1"
+    targetSdkVersion = 24
+
+    // [major]{1} [minor]{2} [hotfix]{2} [fix-own-library]{2}
+    versionCode = 3010000
+
+    // major.minor.hotfix.fix-own-library
+    versionName = "3.1.0.0"
+}
