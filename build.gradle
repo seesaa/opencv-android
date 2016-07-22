@@ -24,9 +24,9 @@ ext {
     buildToolsVersion = "24.0.1"
     targetSdkVersion = 24
 
-    // [major]{1} [minor]{2} [hotfix]{2} [fix-own-library]{2}
+    // [major]{1+} [minor]{2} [hotfix]{2} [revision]{2}
     versionCode = 3010000
 
-    // major.minor.hotfix.fix-own-library
+    // major.minor.hotfix.revision
     versionName = "3.1.0.0"
 }

@@ -73,6 +73,27 @@ BINTRAY_KEY=**********
 ./gradlew clean library:build library:bintrayUpload -PbintrayUser=$BINTRAY_USERNAME -PbintrayKey=$BINTRAY_KEY -PdryRun=false
 ```
 
+## versionCode, versionNameの付け方について
+
+versionCode及びversionNameは、Projectレベルのbuild.gradle(`./build.gradle`)にて管理されています。
+
+(build.gradleにも書いてありますが)versionCode, versionNameには記入ルールを設けてあります。
+
+**versionName**は、OpenCVのバージョン名の末尾に、該当バージョンでの本ライブラリのリリース回数を付与した、4区切りのバージョンで管理します。
+（例：OpenCVが2.4.11で、本ライブラリが2.4.11における初回リリースであるなら、`2.4.11.0`とします。3度アップデートを行った場合は、`2.4.11.3`とします。
+OpenCV3.0.0にバージョンアップしたなら、リリース回数部分はリセットされ、`3.0.0.0`とします。）
+
+**versionCode**は、上記ルールに則ったversionNameより生成します。
+まず、versionNameの4区切りをそれぞれ、`[major].[minor].[hotfix].[revision]`とします。
+
+- [revision]部は、0埋め2桁とします (例:01)
+- [hotfix]部は、0埋め2桁とします (例:11)
+- [minor]部は、0埋め2桁とします (例:04)
+- [major]部は、0埋めをしない桁数制限なし(高々3桁程度まで)とします (例:2)
+
+その後、これを[major]部から[minor],[hotfix],[revision]部と順番に結合します。上記例で考えると、「2041101」となります。
+
+
 # Licenses
 
 本ライブラリは三条項BSDライセンスの下で配布されているOpenCVの[Downloadsページ](http://opencv.org/downloads.html)より入手したSDKソースコード・バイナリを調整の上、AARライブラリ化しております。
