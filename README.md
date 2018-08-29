@@ -1,25 +1,26 @@
 OpenCV for Android library
 ==========================
+日本語のREADMEは[こちら](https://github.com/seesaa/opencv-android/blob/master/README_JP.md)。
 
-# これは何？
+# What is this library?
 
-OpenCVは便利なライブラリですが、検索して見つかる導入方法は面倒であったりします。
-また、ソースコードとバイナリの分離の観点からも、ひとつあたり数メガバイトの`libopencv_java3.so`を複数コミットするということは回避したいところです。
+OpenCV is a very useful library, but the installation to Android Project is troublesome.
+Also, from the viewpoint of separation Android Project source code and OpenCV bintary, you don't want to commit multiple megabytes of ".*so" file per one.
 
-本ライブラリは、OpenCVをGradleでお馴染みの`dependencies`ブロックに記述するだけで利用できるようになるライブラリです。
+This library is a can be used by writing OpenCV in `dependencies` block familiar with Gradle!
 
-## オリジナルSDKとの差異
+## Difference from original OpenCV SDK
 
-[OpenCVのDownloadsページ](https://sourceforge.net/projects/opencvlibrary/files/)より入手できるAndroid版SDKとは以下の点が異なります
+The following points differ from the OpenCV Android version SDK available from [OpenCV Download Page](https://sourceforge.net/projects/opencvlibrary/files/).
 
-- 本ライブラリはdependenciesに記述するだけで使用できます
-- 本ライブラリでは、オリジナルSDKに含まれている一部のマイナーなABIは省かれています
- - 具体的には： mips, mips64, x86, x86_64 が**含まれません**
- - arm64-v8a, armeabi, armeabi-v7a は**含まれます**
+- This library can be used only by describing it in `dependencies` block.
+- In this library, some minor ABIs included in the original SDK are omitted.
+    - Specifically: mips, mips64, x86, x86_64 are **not** included.
+    - arm64-v8a, armeabi, armeabi-v7a are included.
 
-# 使用方法
+# Usage
 
-## 1. dependenciesブロックに以下を付け加える
+## 1. Add the following code to your project's `build.gradle`
 
 ```groovy
 dependencies {
@@ -27,9 +28,9 @@ dependencies {
 }
 ```
 
-NOTE: `Sync Project with Gradle File`することを忘れずに。
+NOTE: Don't forget to do `Sync Project with Gradle File`.
 
-## 2. `Application`クラスを継承したクラスに以下を付け加える
+## 2. Add the following to the class that extends `Application` class
 
 ```java
 public class MyApplication extends Application {
@@ -39,66 +40,51 @@ public class MyApplication extends Application {
 }
 ```
 
-NOTE: `OpenCVLoader`の代わりに`System.loadLibrary("opencv_java3");`と記述しても良い。
+NOTE: You can write `System.loadLibrary("opencv_java3);` instead of `OpenCVLoader`.
 
-## 3. あとは普通に使うだけ。
+## 3. Enjoy OpenCV in your Android Project!
 
-# ライブラリのメンテナンスについて
+# About library maintenance
 
-OpenCVのバージョンが上がったなどの理由で本リポジトリを修正する必要がある場合、以下の点に留意してください。
+If you need to modify this repository for reasons such as the version of OpenCV has been raised, keep the following points in your mind.
 
-## `*.so`ファイルはGit LFSで管理されています
 
-Gitリポジトリはテキストの差分管理には有用ですが、バイナリは不向きです。
-そのため、サイズの大きなバイナリファイル（本リポジトリにおいては`*.so`ファイル）は[Git Large File Storage](https://git-lfs.github.com/)で管理しています。
+## The `*.so` file is managed by Git LFS
 
-とは言えあまり特別なことはなく、以下コマンドなどでgit-lfsをインストールしてから git clone すれば良いだけです。
+Git repositories are useful for text difference management, but binaries are not sutiable.
+Therefore, a large binary file (`.*so` files in this repository) is managed by [Git Large File Storage](https://git-lfs.github.com/).
+
+but, it's not that special, just install git-lfs with the command below, and then git clone it.
 
 ```
 $ brew install git-lfs
 ```
 
-また、`git pull`などをするだけだと、ファイルのポインターファイルだけが取得された状態になるので、`git lfs pull`も併せて行うと良いでしょう。
+Also, if you do just `git pull` only the pointer file of the binaries will be acquired, so you should also do `git lfs pull` together.
 
-## bintrayへの配信について
+## Naming rules of versionCode, versionName
 
-以下のようなシェルスクリプトを用意するのが良いでしょう。
+versionCode and versionName are managed at the project level build.gradle.(`./build.gradle`)
+(It's also written in build.gradle) versionCode and versionname has an naming rules.
 
-```sh
-#!/bin/sh
+**versionName** is managed as 4-delimited version, with the number of releases of this library in the corresponding version appended to the end of OpenCV version.
+(e.g. If OpenCV is 2.4.11, this library is the initial release in 2.4.11, it is set to `2.4.11.0`. If you updated 3 times, it should be `2.4.11.3`. If you upgrade OpenCV to 3.0.0, the number of releases will be reset and set to `3.0.0.0`.)
 
-BINTRAY_USERNAME=*****
-BINTRAY_KEY=**********
+**versionCode** is generated from versionName conforming to the below rules.
+Firs of all, we divide the versionName 4 breaks into `[major].[minor].[hotfix].[revision]`.
 
-./gradlew clean library:build library:bintrayUpload -PbintrayUser=$BINTRAY_USERNAME -PbintrayKey=$BINTRAY_KEY -PdryRun=false
-```
+- The [`revision`] part is 2-digits with **zero** padding. (e.g. 01)
+- The [`hotfix`] part is 2-digits with **zero** padding. (e.g. 11)
+- The [`minor`] part is 2-digits with **zero** padding. (e.g. 04)
+- The [`major`] part is no digit limit and **not** zero padding.(up to about 3-digits at most.) (e.g. 2)
 
-## versionCode, versionNameの付け方について
-
-versionCode及びversionNameは、Projectレベルのbuild.gradle(`./build.gradle`)にて管理されています。
-
-(build.gradleにも書いてありますが)versionCode, versionNameには記入ルールを設けてあります。
-
-**versionName**は、OpenCVのバージョン名の末尾に、該当バージョンでの本ライブラリのリリース回数を付与した、4区切りのバージョンで管理します。
-（例：OpenCVが2.4.11で、本ライブラリが2.4.11における初回リリースであるなら、`2.4.11.0`とします。3度アップデートを行った場合は、`2.4.11.3`とします。
-OpenCV3.0.0にバージョンアップしたなら、リリース回数部分はリセットされ、`3.0.0.0`とします。）
-
-**versionCode**は、上記ルールに則ったversionNameより生成します。
-まず、versionNameの4区切りをそれぞれ、`[major].[minor].[hotfix].[revision]`とします。
-
-- [revision]部は、0埋め2桁とします (例:01)
-- [hotfix]部は、0埋め2桁とします (例:11)
-- [minor]部は、0埋め2桁とします (例:04)
-- [major]部は、0埋めをしない桁数制限なし(高々3桁程度まで)とします (例:2)
-
-その後、これを[major]部から[minor],[hotfix],[revision]部と順番に結合します。上記例で考えると、「2041101」となります。
-
+After that, it combines this from the [`major`]part in the order of [`minor`], [`hotfix`], and [`revision`] part. In the above example, It will be "2041101"
 
 # Licenses
 
-本ライブラリは三条項BSDライセンスの下で配布されているOpenCVの[Downloadsページ](http://opencv.org/downloads.html)より入手したSDKソースコード・バイナリを調整の上、AARライブラリ化しております。
-三条項BSDライセンスに則り、OpenCVのライセンス条項をアプリ内に明示することでお使いいただけます。
+This library adjust the SDK source code binary obtained from the [OpenCV Download Page](https://sourceforge.net/projects/opencvlibrary/files/) distributed under the three clause BSD license, converted it to the AAR library we will.
+In accordance with the three clause BSD license, you can use OpenCV by clarifying the license terms in the application.
 
 - [https://github.com/opencv/opencv/blob/master/LICENSE](https://github.com/opencv/opencv/blob/master/LICENSE)
 
-社内用に作成したものなので特に何も考えてないものの、ロジック類の特別な追記は行っておりませんのでライセンスにおける弊社の表記は不要です。
+Although We have not thought about anything particularly because it was created for internal use, our special notation of logic is not done so our notation in license is unnecessary.Although We have not thought about anything particularly because it was created for internal use, our special notation of logic is not done so our notation in license is unnecessary.
