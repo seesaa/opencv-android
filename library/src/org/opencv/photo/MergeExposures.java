@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -12,10 +11,13 @@ import org.opencv.utils.Converters;
 
 // C++: class MergeExposures
 //javadoc: MergeExposures
+
 public class MergeExposures extends Algorithm {
 
     protected MergeExposures(long addr) { super(addr); }
 
+    // internal usage only
+    public static MergeExposures __fromPtr__(long addr) { return new MergeExposures(addr); }
 
     //
     // C++:  void process(vector_Mat src, Mat& dst, Mat times, Mat response)

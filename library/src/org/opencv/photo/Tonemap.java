@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -9,10 +8,13 @@ import org.opencv.core.Mat;
 
 // C++: class Tonemap
 //javadoc: Tonemap
+
 public class Tonemap extends Algorithm {
 
     protected Tonemap(long addr) { super(addr); }
 
+    // internal usage only
+    public static Tonemap __fromPtr__(long addr) { return new Tonemap(addr); }
 
     //
     // C++:  float getGamma()

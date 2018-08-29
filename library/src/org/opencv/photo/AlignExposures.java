@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -12,10 +11,13 @@ import org.opencv.utils.Converters;
 
 // C++: class AlignExposures
 //javadoc: AlignExposures
+
 public class AlignExposures extends Algorithm {
 
     protected AlignExposures(long addr) { super(addr); }
 
+    // internal usage only
+    public static AlignExposures __fromPtr__(long addr) { return new AlignExposures(addr); }
 
     //
     // C++:  void process(vector_Mat src, vector_Mat dst, Mat times, Mat response)
