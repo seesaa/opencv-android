@@ -10,7 +10,7 @@ OpenCVは便利なライブラリですが、検索して見つかる導入方�
 
 ## オリジナルSDKとの差異
 
-[OpenCVのDownloadsページ](http://opencv.org/downloads.html)より入手できるAndroid版SDKとは以下の点が異なります
+[OpenCVのDownloadsページ](https://sourceforge.net/projects/opencvlibrary/files/)より入手できるAndroid版SDKとは以下の点が異なります
 
 - 本ライブラリはdependenciesに記述するだけで使用できます
 - 本ライブラリでは、オリジナルSDKに含まれている一部のマイナーなABIは省かれています
@@ -23,7 +23,7 @@ OpenCVは便利なライブラリですが、検索して見つかる導入方�
 
 ```groovy
 dependencies {
-    compile "jp.seesaa.android:opencv:3.1.0.0"
+    implementation "jp.seesaa.android:opencv:3.4.2.0"
 }
 ```
 
