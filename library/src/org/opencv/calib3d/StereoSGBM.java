@@ -1,42 +1,46 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.calib3d;
 
-
+import org.opencv.calib3d.StereoMatcher;
+import org.opencv.calib3d.StereoSGBM;
 
 // C++: class StereoSGBM
 //javadoc: StereoSGBM
+
 public class StereoSGBM extends StereoMatcher {
 
     protected StereoSGBM(long addr) { super(addr); }
 
+    // internal usage only
+    public static StereoSGBM __fromPtr__(long addr) { return new StereoSGBM(addr); }
 
     public static final int
             MODE_SGBM = 0,
             MODE_HH = 1,
-            MODE_SGBM_3WAY = 2;
+            MODE_SGBM_3WAY = 2,
+            MODE_HH4 = 3;
 
 
     //
-    // C++: static Ptr_StereoSGBM create(int minDisparity, int numDisparities, int blockSize, int P1 = 0, int P2 = 0, int disp12MaxDiff = 0, int preFilterCap = 0, int uniquenessRatio = 0, int speckleWindowSize = 0, int speckleRange = 0, int mode = StereoSGBM::MODE_SGBM)
+    // C++: static Ptr_StereoSGBM create(int minDisparity = 0, int numDisparities = 16, int blockSize = 3, int P1 = 0, int P2 = 0, int disp12MaxDiff = 0, int preFilterCap = 0, int uniquenessRatio = 0, int speckleWindowSize = 0, int speckleRange = 0, int mode = StereoSGBM::MODE_SGBM)
     //
 
     //javadoc: StereoSGBM::create(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange, mode)
     public static StereoSGBM create(int minDisparity, int numDisparities, int blockSize, int P1, int P2, int disp12MaxDiff, int preFilterCap, int uniquenessRatio, int speckleWindowSize, int speckleRange, int mode)
     {
         
-        StereoSGBM retVal = new StereoSGBM(create_0(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange, mode));
+        StereoSGBM retVal = StereoSGBM.__fromPtr__(create_0(minDisparity, numDisparities, blockSize, P1, P2, disp12MaxDiff, preFilterCap, uniquenessRatio, speckleWindowSize, speckleRange, mode));
         
         return retVal;
     }
 
-    //javadoc: StereoSGBM::create(minDisparity, numDisparities, blockSize)
-    public static StereoSGBM create(int minDisparity, int numDisparities, int blockSize)
+    //javadoc: StereoSGBM::create()
+    public static StereoSGBM create()
     {
         
-        StereoSGBM retVal = new StereoSGBM(create_1(minDisparity, numDisparities, blockSize));
+        StereoSGBM retVal = StereoSGBM.__fromPtr__(create_1());
         
         return retVal;
     }
@@ -189,9 +193,9 @@ public class StereoSGBM extends StereoMatcher {
 
 
 
-    // C++: static Ptr_StereoSGBM create(int minDisparity, int numDisparities, int blockSize, int P1 = 0, int P2 = 0, int disp12MaxDiff = 0, int preFilterCap = 0, int uniquenessRatio = 0, int speckleWindowSize = 0, int speckleRange = 0, int mode = StereoSGBM::MODE_SGBM)
+    // C++: static Ptr_StereoSGBM create(int minDisparity = 0, int numDisparities = 16, int blockSize = 3, int P1 = 0, int P2 = 0, int disp12MaxDiff = 0, int preFilterCap = 0, int uniquenessRatio = 0, int speckleWindowSize = 0, int speckleRange = 0, int mode = StereoSGBM::MODE_SGBM)
     private static native long create_0(int minDisparity, int numDisparities, int blockSize, int P1, int P2, int disp12MaxDiff, int preFilterCap, int uniquenessRatio, int speckleWindowSize, int speckleRange, int mode);
-    private static native long create_1(int minDisparity, int numDisparities, int blockSize);
+    private static native long create_1();
 
     // C++:  int getMode()
     private static native int getMode_0(long nativeObj);

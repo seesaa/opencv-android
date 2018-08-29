@@ -1,18 +1,23 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import org.opencv.core.Mat;
 import org.opencv.core.TermCriteria;
+import org.opencv.ml.LogisticRegression;
+import org.opencv.ml.StatModel;
 
 // C++: class LogisticRegression
 //javadoc: LogisticRegression
+
 public class LogisticRegression extends StatModel {
 
     protected LogisticRegression(long addr) { super(addr); }
 
+    // internal usage only
+    public static LogisticRegression __fromPtr__(long addr) { return new LogisticRegression(addr); }
 
     public static final int
             REG_DISABLE = -1,
@@ -44,7 +49,30 @@ public class LogisticRegression extends StatModel {
     public static LogisticRegression create()
     {
         
-        LogisticRegression retVal = new LogisticRegression(create_0());
+        LogisticRegression retVal = LogisticRegression.__fromPtr__(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_LogisticRegression load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: LogisticRegression::load(filepath, nodeName)
+    public static LogisticRegression load(String filepath, String nodeName)
+    {
+        
+        LogisticRegression retVal = LogisticRegression.__fromPtr__(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: LogisticRegression::load(filepath)
+    public static LogisticRegression load(String filepath)
+    {
+        
+        LogisticRegression retVal = LogisticRegression.__fromPtr__(load_1(filepath));
         
         return retVal;
     }
@@ -253,6 +281,10 @@ public class LogisticRegression extends StatModel {
 
     // C++: static Ptr_LogisticRegression create()
     private static native long create_0();
+
+    // C++: static Ptr_LogisticRegression load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
 
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);

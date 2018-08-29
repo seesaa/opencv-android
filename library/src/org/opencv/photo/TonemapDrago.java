@@ -1,17 +1,19 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.photo;
 
-
+import org.opencv.photo.Tonemap;
 
 // C++: class TonemapDrago
 //javadoc: TonemapDrago
+
 public class TonemapDrago extends Tonemap {
 
     protected TonemapDrago(long addr) { super(addr); }
 
+    // internal usage only
+    public static TonemapDrago __fromPtr__(long addr) { return new TonemapDrago(addr); }
 
     //
     // C++:  float getBias()

@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -17,11 +16,16 @@ import org.opencv.utils.Converters;
 
 // C++: class Subdiv2D
 //javadoc: Subdiv2D
+
 public class Subdiv2D {
 
     protected final long nativeObj;
     protected Subdiv2D(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static Subdiv2D __fromPtr__(long addr) { return new Subdiv2D(addr); }
 
     public static final int
             PTLOC_ERROR = -2,
@@ -260,6 +264,20 @@ public class Subdiv2D {
 
 
     //
+    // C++:  void getLeadingEdgeList(vector_int& leadingEdgeList)
+    //
+
+    //javadoc: Subdiv2D::getLeadingEdgeList(leadingEdgeList)
+    public  void getLeadingEdgeList(MatOfInt leadingEdgeList)
+    {
+        Mat leadingEdgeList_mat = leadingEdgeList;
+        getLeadingEdgeList_0(nativeObj, leadingEdgeList_mat.nativeObj);
+        
+        return;
+    }
+
+
+    //
     // C++:  void getTriangleList(vector_Vec6f& triangleList)
     //
 
@@ -367,6 +385,9 @@ public class Subdiv2D {
 
     // C++:  void getEdgeList(vector_Vec4f& edgeList)
     private static native void getEdgeList_0(long nativeObj, long edgeList_mat_nativeObj);
+
+    // C++:  void getLeadingEdgeList(vector_int& leadingEdgeList)
+    private static native void getLeadingEdgeList_0(long nativeObj, long leadingEdgeList_mat_nativeObj);
 
     // C++:  void getTriangleList(vector_Vec6f& triangleList)
     private static native void getTriangleList_0(long nativeObj, long triangleList_mat_nativeObj);

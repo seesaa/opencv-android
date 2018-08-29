@@ -1,17 +1,20 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.photo;
 
 import org.opencv.core.Mat;
+import org.opencv.photo.CalibrateCRF;
 
 // C++: class CalibrateRobertson
 //javadoc: CalibrateRobertson
+
 public class CalibrateRobertson extends CalibrateCRF {
 
     protected CalibrateRobertson(long addr) { super(addr); }
 
+    // internal usage only
+    public static CalibrateRobertson __fromPtr__(long addr) { return new CalibrateRobertson(addr); }
 
     //
     // C++:  Mat getRadiance()

@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -8,11 +7,16 @@ import org.opencv.core.Mat;
 
 // C++: class KalmanFilter
 //javadoc: KalmanFilter
+
 public class KalmanFilter {
 
     protected final long nativeObj;
     protected KalmanFilter(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static KalmanFilter __fromPtr__(long addr) { return new KalmanFilter(addr); }
 
     //
     // C++:   KalmanFilter(int dynamParams, int measureParams, int controlParams = 0, int type = CV_32F)

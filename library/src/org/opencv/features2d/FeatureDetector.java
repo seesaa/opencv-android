@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -9,15 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
+import org.opencv.features2d.FeatureDetector;
 import org.opencv.utils.Converters;
 
 // C++: class javaFeatureDetector
 //javadoc: javaFeatureDetector
+@Deprecated
 public class FeatureDetector {
 
     protected final long nativeObj;
     protected FeatureDetector(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static FeatureDetector __fromPtr__(long addr) { return new FeatureDetector(addr); }
 
     private static final int
             GRIDDETECTOR = 1000,
@@ -77,6 +82,21 @@ public class FeatureDetector {
 
 
     //
+    // C++: static Ptr_javaFeatureDetector create(int detectorType)
+    //
+
+    //javadoc: javaFeatureDetector::create(detectorType)
+    @Deprecated
+    public static FeatureDetector create(int detectorType)
+    {
+        
+        FeatureDetector retVal = FeatureDetector.__fromPtr__(create_0(detectorType));
+        
+        return retVal;
+    }
+
+
+    //
     // C++:  bool empty()
     //
 
@@ -85,20 +105,6 @@ public class FeatureDetector {
     {
         
         boolean retVal = empty_0(nativeObj);
-        
-        return retVal;
-    }
-
-
-    //
-    // C++: static javaFeatureDetector* create(int detectorType)
-    //
-
-    //javadoc: javaFeatureDetector::create(detectorType)
-    public static FeatureDetector create(int detectorType)
-    {
-        
-        FeatureDetector retVal = new FeatureDetector(create_0(detectorType));
         
         return retVal;
     }
@@ -190,11 +196,11 @@ public class FeatureDetector {
 
 
 
+    // C++: static Ptr_javaFeatureDetector create(int detectorType)
+    private static native long create_0(int detectorType);
+
     // C++:  bool empty()
     private static native boolean empty_0(long nativeObj);
-
-    // C++: static javaFeatureDetector* create(int detectorType)
-    private static native long create_0(int detectorType);
 
     // C++:  void detect(Mat image, vector_KeyPoint& keypoints, Mat mask = Mat())
     private static native void detect_0(long nativeObj, long image_nativeObj, long keypoints_mat_nativeObj, long mask_nativeObj);

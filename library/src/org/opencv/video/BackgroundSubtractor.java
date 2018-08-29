@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -9,10 +8,13 @@ import org.opencv.core.Mat;
 
 // C++: class BackgroundSubtractor
 //javadoc: BackgroundSubtractor
+
 public class BackgroundSubtractor extends Algorithm {
 
     protected BackgroundSubtractor(long addr) { super(addr); }
 
+    // internal usage only
+    public static BackgroundSubtractor __fromPtr__(long addr) { return new BackgroundSubtractor(addr); }
 
     //
     // C++:  void apply(Mat image, Mat& fgmask, double learningRate = -1)

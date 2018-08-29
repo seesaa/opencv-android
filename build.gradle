@@ -2,16 +2,18 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
-        classpath 'com.novoda:bintray-release:0.3.4'
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.novoda:bintray-release:0.8.1'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -20,13 +22,13 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 24
-    buildToolsVersion = "24.0.1"
-    targetSdkVersion = 24
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.2"
+    targetSdkVersion = 28
 
     // [major]{1+} [minor]{2} [hotfix]{2} [revision]{2}
-    versionCode = 3010000
+    versionCode = 3040000
 
     // major.minor.hotfix.revision
-    versionName = "3.1.0.0"
+    versionName = "3.4.2.0"
 }
