@@ -5,7 +5,7 @@ OpenCV for Android library
 # What is this library?
 
 OpenCV is a very useful library, but the installation to Android Project is troublesome.
-Also, from the viewpoint of separation Android Project source code and OpenCV bintary, you don't want to commit multiple megabytes of ".*so" file per one.
+Also, from the viewpoint of separation Android Project source code and OpenCV binary files, you don't want to commit multiple megabytes of ".*so" file per one.
 
 This library is a can be used by writing OpenCV in `dependencies` block familiar with Gradle!
 
